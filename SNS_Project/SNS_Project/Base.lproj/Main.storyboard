@@ -108,15 +108,6 @@
                                                                     </constraints>
                                                                     <state key="normal" image="likebutton_default"/>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQb-kf-yrj">
-                                                                    <rect key="frame" x="42" y="19" width="60" height="21"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="60" id="0P8-cE-DrT"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yF-aH-S0b">
                                                                     <rect key="frame" x="118" y="14" width="30" height="30"/>
                                                                     <constraints>
@@ -149,18 +140,27 @@
                                                                     <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNs-TX-Ztv">
+                                                                    <rect key="frame" x="42" y="14" width="60" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="60" id="tj0-Vc-S1B"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Likes">
+                                                                        <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstItem="aQb-kf-yrj" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="1Kz-a1-K6M"/>
                                                                 <constraint firstItem="qyO-Rz-dmh" firstAttribute="leading" secondItem="8YR-Zg-JRc" secondAttribute="trailing" constant="8" symbolic="YES" id="5GS-Eq-W9o"/>
                                                                 <constraint firstItem="8YR-Zg-JRc" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="9z7-YH-yTh"/>
                                                                 <constraint firstItem="8YR-Zg-JRc" firstAttribute="leading" secondItem="T7w-DY-H39" secondAttribute="trailing" constant="16" id="GCl-IH-Gqh"/>
                                                                 <constraint firstItem="T7w-DY-H39" firstAttribute="leading" secondItem="3yF-aH-S0b" secondAttribute="trailing" id="Jhn-u0-sjG"/>
-                                                                <constraint firstItem="3yF-aH-S0b" firstAttribute="leading" secondItem="aQb-kf-yrj" secondAttribute="trailing" constant="16" id="O2s-Vd-gLg"/>
-                                                                <constraint firstItem="aQb-kf-yrj" firstAttribute="leading" secondItem="13X-9a-z63" secondAttribute="trailing" constant="4" id="Stz-2h-GZ1"/>
+                                                                <constraint firstItem="3yF-aH-S0b" firstAttribute="leading" secondItem="NNs-TX-Ztv" secondAttribute="trailing" constant="16" id="Lcc-Dj-oCi"/>
+                                                                <constraint firstItem="NNs-TX-Ztv" firstAttribute="leading" secondItem="13X-9a-z63" secondAttribute="trailing" constant="4" id="NLy-Tf-GDB"/>
                                                                 <constraint firstItem="13X-9a-z63" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="THe-5e-pPT"/>
                                                                 <constraint firstItem="T7w-DY-H39" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="UWc-Uz-x8C"/>
+                                                                <constraint firstItem="NNs-TX-Ztv" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="VRF-af-0Ov"/>
                                                                 <constraint firstItem="13X-9a-z63" firstAttribute="leading" secondItem="zND-uj-Fih" secondAttribute="leading" constant="8" id="kL1-9c-gJv"/>
                                                                 <constraint firstItem="qyO-Rz-dmh" firstAttribute="trailing" secondItem="zND-uj-Fih" secondAttribute="trailingMargin" id="rP2-ee-jBK"/>
                                                                 <constraint firstItem="3yF-aH-S0b" firstAttribute="centerY" secondItem="zND-uj-Fih" secondAttribute="centerY" id="vr9-SI-hgz"/>
@@ -212,6 +212,9 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="gpsAddress" destination="FzU-5g-1LA" id="aeq-46-TxK"/>
+                                            <outlet property="likesButton" destination="13X-9a-z63" id="zZV-d3-TmR"/>
+                                            <outlet property="likesCountButton" destination="NNs-TX-Ztv" id="sj8-4r-0L5"/>
+                                            <outlet property="messagesButton" destination="T7w-DY-H39" id="JHD-G4-3rI"/>
                                             <outlet property="nickname" destination="Xzd-mu-oYL" id="TdD-DL-cn3"/>
                                             <outlet property="profileImageView" destination="MAB-yj-Wae" id="9vI-Ug-hZs"/>
                                         </connections>
@@ -233,10 +236,57 @@
                         <viewLayoutGuide key="safeArea" id="lQl-Gr-kzI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instagram" id="g0Z-Sf-Sxz"/>
+                    <connections>
+                        <outlet property="collectionView" destination="1Tq-0I-Spc" id="aF3-ac-kDJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1253.5999999999999" y="-45.42728635682159"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="jIf-o8-iQC">
+            <objects>
+                <viewController storyboardIdentifier="commentsVC" id="PDn-2P-bmc" customClass="CommentsViewController" customModule="SNS_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EAL-s1-XOy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oiT-HH-MP1">
+                                <rect key="frame" x="67" y="317" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="bYI-pR-Jsm"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bH6-Yf-6l6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="-249"/>
+        </scene>
+        <!--Likes View Controller-->
+        <scene sceneID="qvl-35-U5v">
+            <objects>
+                <viewController storyboardIdentifier="LikesVC" id="yvd-6i-d2z" customClass="LikesViewController" customModule="SNS_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aM6-Vk-9qT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3k1-ym-dU4">
+                                <rect key="frame" x="67" y="236" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="bCx-uf-sCg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKQ-rW-cIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2009" y="417"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mxZ-g1-v14">

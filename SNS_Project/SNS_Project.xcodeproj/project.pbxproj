@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE515D6E20028EA700595A42 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515D6D20028EA700595A42 /* CommentsViewController.swift */; };
+		CE515D702002960A00595A42 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515D6F2002960A00595A42 /* LikesViewController.swift */; };
 		CE6214EB20013E6A0009613F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6214EA20013E6A0009613F /* AppDelegate.swift */; };
 		CE6214ED20013E6A0009613F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6214EC20013E6A0009613F /* ViewController.swift */; };
 		CE6214F020013E6A0009613F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6214EE20013E6A0009613F /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE515D6D20028EA700595A42 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		CE515D6F2002960A00595A42 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		CE6214E720013E6A0009613F /* SNS_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNS_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6214EA20013E6A0009613F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6214EC20013E6A0009613F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,12 +67,14 @@
 				CE6214EA20013E6A0009613F /* AppDelegate.swift */,
 				CE6214EC20013E6A0009613F /* ViewController.swift */,
 				CE6214EE20013E6A0009613F /* Main.storyboard */,
+				CE515D6F2002960A00595A42 /* LikesViewController.swift */,
 				CE6214FE20014E370009613F /* HomeViewController.swift */,
 				CE62150020014E9B0009613F /* HomeViewCell.swift */,
 				CE6214FC20014BBC0009613F /* MainTabbarController.swift */,
 				CE6214F120013E6A0009613F /* Assets.xcassets */,
 				CE6214F320013E6A0009613F /* LaunchScreen.storyboard */,
 				CE6214F620013E6A0009613F /* Info.plist */,
+				CE515D6D20028EA700595A42 /* CommentsViewController.swift */,
 			);
 			path = SNS_Project;
 			sourceTree = "<group>";
@@ -145,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE515D702002960A00595A42 /* LikesViewController.swift in Sources */,
 				CE6214ED20013E6A0009613F /* ViewController.swift in Sources */,
 				CE6214EB20013E6A0009613F /* AppDelegate.swift in Sources */,
+				CE515D6E20028EA700595A42 /* CommentsViewController.swift in Sources */,
 				CE62150120014E9B0009613F /* HomeViewCell.swift in Sources */,
 				CE6214FD20014BBC0009613F /* MainTabbarController.swift in Sources */,
 				CE6214FF20014E370009613F /* HomeViewController.swift in Sources */,
