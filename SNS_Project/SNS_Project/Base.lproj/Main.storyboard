@@ -16,12 +16,12 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="SNS_Project" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Tq-0I-Spc">
-                                <rect key="frame" x="0.0" y="70" width="375" height="548"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="553"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="56j-sZ-Y17">
                                     <size key="itemSize" width="363" height="452"/>
@@ -122,6 +122,7 @@
                                                                         <constraint firstAttribute="height" constant="30" id="7gk-4M-ILV"/>
                                                                         <constraint firstAttribute="width" constant="100" id="uCK-vY-SeC"/>
                                                                     </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <state key="normal" title="10 comments">
                                                                         <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </state>
@@ -141,10 +142,11 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNs-TX-Ztv">
-                                                                    <rect key="frame" x="42" y="14" width="60" height="30"/>
+                                                                    <rect key="frame" x="42" y="15" width="60" height="28"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="tj0-Vc-S1B"/>
                                                                     </constraints>
+                                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                                                     <state key="normal" title="Likes">
                                                                         <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </state>
@@ -229,11 +231,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Tq-0I-Spc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DEm-Ku-zLQ"/>
-                            <constraint firstItem="1Tq-0I-Spc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="70" id="L2g-md-lMh"/>
+                            <constraint firstItem="1Tq-0I-Spc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="65" id="L2g-md-lMh"/>
                             <constraint firstAttribute="bottom" secondItem="1Tq-0I-Spc" secondAttribute="bottom" constant="49" id="bms-mH-1aM"/>
                             <constraint firstAttribute="trailing" secondItem="1Tq-0I-Spc" secondAttribute="trailing" id="rjK-g7-2t3"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lQl-Gr-kzI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instagram" id="g0Z-Sf-Sxz"/>
                     <connections>

@@ -13,17 +13,16 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var commentsViewController: CommentsViewController?
     var isLiked: Bool = false
+    var likesCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     @objc func pushLikesViewcontroller() {
         guard let destination = storyboard?.instantiateViewController(withIdentifier: "LikesVC") else {
             return
         }
-        
         self.navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -43,6 +42,8 @@ class HomeViewController: UIViewController {
         } else {
            sender.setImage(UIImage(named: "likebutton_default"), for: .normal)
         }
+        
+        collectionView.reloadData()
     }
 }
 
@@ -51,6 +52,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return 3
     }
     
+    //
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HomeViewCell ?? HomeViewCell()
         cell.messagesButton.addTarget(self, action: #selector(pushCommentsViewcontroller), for: .touchUpInside)
@@ -59,6 +61,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.likesButton.addTarget(self, action: #selector(tapLikesButton), for: .touchUpInside)
         cell.settingUI()
+        if self.isLiked {
+            cell.likesCountButton.setTitle("\(likesCount + 1) Likes", for: .normal)
+        } else {
+            cell.likesCountButton.setTitle("\(likesCount) Likes ", for: .normal)
+        }
+        
+        
         
         return cell
     }
