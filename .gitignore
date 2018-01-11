@@ -1,12 +1,11 @@
-
-# Created by https://www.gitignore.io/api/linux,macos,swift,xcode,cocoapods,objective-c
+# Created by https://www.gitignore.io/api/macos,xcode,swift,linux,cocoapods,objective-c
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
 
 # CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a large number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+#           - Also handy if you have a lage number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGONRE THE LOCK FILE
 Pods/
 
 ### Linux ###
@@ -162,4 +161,9 @@ playground.xcworkspace
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-# End of https://www.gitignore.io/api/linux,macos,swift,xcode,cocoapods,objective-c
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# End of https://www.gitignore.io/api/macos,xcode,swift,linux,cocoapods,objective-c
+contents.xcworkspacedata
