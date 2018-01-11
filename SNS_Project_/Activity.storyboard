@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Activity View Controller-->
+        <scene sceneID="CcV-Dh-Q6d">
+            <objects>
+                <viewController id="Gac-Yf-MRD" customClass="ActivityViewController" customModule="SNS_Project_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vSk-lq-FEV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="TUr-Ij-bsT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GgP-b6-eyp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UIV-I9-IBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="-61"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DpJ-ge-yWV">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationActivity" automaticallyAdjustsScrollViewInsets="NO" id="0YT-NA-1kG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="activity_default" selectedImage="activity_selected" id="3OK-CN-mvL">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iPO-Wb-c5h">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gac-Yf-MRD" kind="relationship" relationship="rootViewController" id="duc-QH-Q6t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6M-IT-81w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="-833"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="activity_default" width="22" height="20"/>
+        <image name="activity_selected" width="22" height="20"/>
+    </resources>
+</document>
