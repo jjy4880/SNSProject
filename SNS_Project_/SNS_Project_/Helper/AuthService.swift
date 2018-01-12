@@ -11,11 +11,8 @@ class AuthService {
         Database.database().reference().child("users").observe(.value) { (snapshot) in
             for child in snapshot.children {
                 let son = child as! DataSnapshot
-                print(son)
                 let values = son.value as! NSDictionary
-                dump(values)
                 let email = values["email"] as! String
-                print(email)
                 self.userList.append(email)
                 
             }

@@ -27,7 +27,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
         
         AuthService.fetchDatabase()
         
-        
         self.view.addSubview(button)
         
         // 구글 버튼 설정
