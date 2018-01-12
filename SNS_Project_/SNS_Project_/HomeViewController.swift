@@ -1,35 +1,33 @@
-//
-//  HomeViewController.swift
-//  SNS_Project_
-//
-//  Created by Jiyong on 2018. 1. 11..
-//  Copyright © 2018년 yong. All rights reserved.
-//
-
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .blue
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // logout
+    @IBAction func logOut(_ sender: Any) {
+        logoutAlert()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func logoutAlert() {
+        let alert = UIAlertController(title: "로그아웃 하시겠습니까?", message: "", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "네", style: .destructive) { (action) in
+            do {
+                try Auth.auth().signOut()
+            } catch let error {
+                print(error)
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancel = UIAlertAction(title: "아니요", style: .default, handler: nil)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
 }

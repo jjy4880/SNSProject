@@ -98,6 +98,7 @@
                     </view>
                     <connections>
                         <outlet property="email" destination="JRL-c2-FF6" id="cza-HF-XSD"/>
+                        <outlet property="loginButton" destination="7Fc-uH-qgY" id="3IH-Ez-BHk"/>
                         <outlet property="password" destination="JIZ-Qz-cjq" id="Vq6-8A-Ntx"/>
                         <segue destination="E1E-vI-zNA" kind="presentation" identifier="signIntoTabbarVC" id="OqA-mS-Fj2"/>
                     </connections>
