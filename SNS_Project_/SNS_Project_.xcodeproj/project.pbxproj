@@ -23,6 +23,7 @@
 		CE4563632006833D005B097A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4563622006833D005B097A /* LoginViewController.swift */; };
 		CE456365200688DE005B097A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456364200688DE005B097A /* SignUpViewController.swift */; };
 		CE45636720068F65005B097A /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45636620068F65005B097A /* MainTabbarViewController.swift */; };
+		CE45754E2009153400C89512 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45754D2009153400C89512 /* AuthService.swift */; };
 		CEE44B9A200690DD00465A6C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B99200690DD00465A6C /* HomeViewController.swift */; };
 		CEE44B9C200690EA00465A6C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B9B200690EA00465A6C /* SearchViewController.swift */; };
 		CEE44B9E200690F500465A6C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B9D200690F500465A6C /* PhotoViewController.swift */; };
@@ -51,6 +52,7 @@
 		CE4563622006833D005B097A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE456364200688DE005B097A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CE45636620068F65005B097A /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		CE45754D2009153400C89512 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CEE44B99200690DD00465A6C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEE44B9B200690EA00465A6C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CEE44B9D200690F500465A6C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		CE2F0A4C200736C7001B56BC /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				CE456359200682EB005B097A /* LaunchScreen.storyboard */,
 				CE2F0A3F20072F50001B56BC /* Home.storyboard */,
 				CE2F0A49200730FB001B56BC /* Profile.storyboard */,
 				CE2F0A47200730DD001B56BC /* Activity.storyboard */,
@@ -148,16 +151,24 @@
 		CE45634F200682EB005B097A /* SNS_Project_ */ = {
 			isa = PBXGroup;
 			children = (
+				CE45754C2009150400C89512 /* Helper */,
 				CE2F0A542007786F001B56BC /* Extensions */,
 				CE2F0A5120077758001B56BC /* ViewModel */,
 				CE2F0A4C200736C7001B56BC /* Storyboards */,
 				CE2F0A4F2007772B001B56BC /* Controller */,
 				CE456357200682EB005B097A /* Assets.xcassets */,
-				CE456359200682EB005B097A /* LaunchScreen.storyboard */,
 				CE2F0A552007E7E5001B56BC /* GoogleService-Info.plist */,
 				CE45635C200682EB005B097A /* Info.plist */,
 			);
 			path = SNS_Project_;
+			sourceTree = "<group>";
+		};
+		CE45754C2009150400C89512 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CE45754D2009153400C89512 /* AuthService.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		FC129F0CC2C1C0E49425EC83 /* Pods */ = {
@@ -302,6 +313,7 @@
 				CE4563632006833D005B097A /* LoginViewController.swift in Sources */,
 				CEE44B9C200690EA00465A6C /* SearchViewController.swift in Sources */,
 				CEE44BA22006910D00465A6C /* ActivityViewController.swift in Sources */,
+				CE45754E2009153400C89512 /* AuthService.swift in Sources */,
 				CE456365200688DE005B097A /* SignUpViewController.swift in Sources */,
 				CE456351200682EB005B097A /* AppDelegate.swift in Sources */,
 				CEE44B9E200690F500465A6C /* PhotoViewController.swift in Sources */,

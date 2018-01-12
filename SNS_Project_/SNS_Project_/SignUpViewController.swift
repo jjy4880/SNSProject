@@ -48,9 +48,7 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signupPressed(_ sender: Any) {
-        
         passwordCheck.resignFirstResponder()
-        
         guard let email = email.text,
             let password = password.text,
             let name = nickname.text,
@@ -60,34 +58,12 @@ class SignUpViewController: UIViewController {
         let action = UIAlertAction(title: "확인", style: .default) { (action) in
             DispatchQueue.global().async {
                 //FirebaseAuth
-                Auth.auth().createUser(
-                    withEmail: email,
-                    password: password,
-                    completion: { (user: User?, err) in
-                        if let error = err {
-                            print(error.localizedDescription)
-                            return
-                        }
-                        guard let uid = user?.uid else { return }
-                        
-                        // 이미지 저장하기 위해 변형.
-                        guard let saveImage = UIImageJPEGRepresentation(image, 0.1)  else { return }
-                        user?.createProfileChangeRequest().displayName = name
-                        user?.createProfileChangeRequest().commitChanges(completion: nil)
-                        
-                        Storage.storage().reference(withPath: "userProfileImages").child(uid).putData(saveImage, metadata: nil, completion: { (data, err) in
-                            let imageURL = data?.downloadURL()?.absoluteString ?? "Has not Found"
-                            // Database Connect
-                            // ref 를 통하여 통신한다.uid
-                            self.pushDataToFirebase(userName: name, email: email, profileImageUrl: imageURL, uid: uid)
-                        })
+                AuthService.createUser(name: name, email: email, password: password, image: image, onSuccess: {
+                    DispatchQueue.main.async { [weak self] in
+                        guard let `self` = self else { return }
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 })
-            }
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let `self` = self else { return }
-                
-                self.dismiss(animated: true, completion: nil)
             }
         }
         
@@ -95,19 +71,6 @@ class SignUpViewController: UIViewController {
         self.present(alertController, animated: true) {
           self.signupViewDataReset()
         }
-    }
-    
-    // Database Push
-    func pushDataToFirebase(userName: String, email: String, profileImageUrl: String, uid: String){
-        let ref = Database.database().reference().child("users")
-        
-        let userReference = ref.child(uid)
-        userReference.setValue(["username": userName,
-                                "email": email,
-                                "profileImageUrl": profileImageUrl,
-                                "uid": uid
-            ])
-        print(" description: \(userReference.description())")
     }
     
     @IBAction func dismissSignUp(_ sender: Any) {

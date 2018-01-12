@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
         super.viewDidLoad()
         email.delegate = self
         password.delegate = self
+        
         self.view.addSubview(button)
         
         // 구글 버튼 설정
@@ -34,10 +35,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
             make.top.equalTo(loginButton.snp.bottom).offset(8)
         }
         
+        
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signOut()
+        
         textFieldStyleSetting(sender: [email, password])
     }
     
@@ -48,6 +50,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
     // 자동 로그인
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        //자동로그인
         if Auth.auth().currentUser != nil {
             self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
         }
@@ -70,68 +74,49 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
                 print("로그인 에러")
                 return
         }
-        
         password.resignFirstResponder()
         
-        Auth.auth().signIn(withEmail: emailAddress, password: passwordValue) { (user, err) in
-            if err != nil {
-                let alertController = UIAlertController(title: "로그인 실패", message: err.debugDescription, preferredStyle: .alert)
-                
-                let okButton = UIAlertAction(title: "확인", style: .default, handler: { (action) in
-                    self.email.resignFirstResponder()
-                })
-                
-                alertController.addAction(okButton)
-                self.present(alertController, animated: true, completion: {
-                    self.email.text = ""
-                    self.password.text = ""
-                })
-                return
-            }
+        // email 로그인 성공시 탭바 실패시 알럿
+        AuthService.signIn(email: emailAddress, password: passwordValue, onSuccess: {
             self.email.text = ""
             self.password.text = ""
             self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
+        }) {
+            self.loginFairueAlert()
         }
     }
     
+    func loginFairueAlert() {
+        let alertController = UIAlertController(title: "로그인 실패", message: "ID/Password를 확인하여주세요.", preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "확인", style: .default, handler: { (action) in
+            self.email.becomeFirstResponder()
+        })
+        
+        alertController.addAction(okButton)
+        self.present(alertController, animated: true, completion: {
+            self.email.text = ""
+            self.password.text = ""
+        })
+    }
+    
+    // 구글로그인 델리게이트
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
         if let error = error {
-            print("찾고있음")
+            print(error.localizedDescription)
             return
         }
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (user, err) in
-            if let error = err {
-                print(error.localizedDescription)
-                return
-            }
-            print("Success")
-            
-            if let name = user?.displayName,
-                let email = user?.email,
-                let profileImageUrl = user?.photoURL?.absoluteString,
-                let userid = user?.uid {
-                self.pushDataToFirebase(userName: name, email: email, profileImageUrl: profileImageUrl, uid: userid)
-            }
-        }
-        GIDSignIn.sharedInstance().signOut()
-        self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
-    }
-    
-    func pushDataToFirebase(userName: String, email: String, profileImageUrl: String, uid: String){
-        let ref = Database.database().reference().child("users")
         
-        let userReference = ref.child(uid)
-        userReference.setValue(["username": userName,
-                                "email": email,
-                                "profileImageUrl": profileImageUrl,
-                                "uid": uid
-            ])
-        print(" description: \(userReference.description())")
+        // GoogleLogin
+        AuthService.signIn(credential: credential) {
+            self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
+            GIDSignIn.sharedInstance().signOut()
+        }
     }
 }
 
