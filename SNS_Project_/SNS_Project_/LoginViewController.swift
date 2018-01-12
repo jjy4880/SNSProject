@@ -24,6 +24,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
         email.delegate = self
         password.delegate = self
         
+        
+        AuthService.fetchDatabase()
+        
+        
         self.view.addSubview(button)
         
         // 구글 버튼 설정

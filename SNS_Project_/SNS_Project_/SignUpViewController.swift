@@ -54,22 +54,30 @@ class SignUpViewController: UIViewController {
             let name = nickname.text,
             let image = profileImageView.image else { return }
         
-        let alertController = UIAlertController(title: "\(name)님 축하합니다.", message: "성공적으로 가입 되었습니다.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default) { (action) in
-            DispatchQueue.global().async {
-                //FirebaseAuth
-                AuthService.createUser(name: name, email: email, password: password, image: image, onSuccess: {
-                    DispatchQueue.main.async { [weak self] in
-                        guard let `self` = self else { return }
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                })
-            }
-        }
         
-        alertController.addAction(action)
-        self.present(alertController, animated: true) {
-          self.signupViewDataReset()
+        //FirebaseAuth
+        AuthService.createUser(name: name, email: email, password: password, image: image, onSuccess: {
+            let alertController = UIAlertController(title: "\(name)님 축하합니다.", message: "성공적으로 가입 되었습니다.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "확인", style: .default) { (action) in
+                DispatchQueue.main.async { [weak self] in
+                    guard let `self` = self else { return }
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+            
+        }) {
+            //failure
+            let alert = UIAlertController(title: "이미 존재하는 id 입니다.", message: "다시 입력해 주세요", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .destructive, handler: { (action) in
+                self.signupViewDataReset()
+                self.nickname.becomeFirstResponder()
+            })
+            
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -83,7 +91,7 @@ class SignUpViewController: UIViewController {
         password.text = ""
         passwordCheck.text = ""
         nickname.text = ""
-        profileImageView.image = nil
+        profileImageView.image = #imageLiteral(resourceName: "profileImage")
     }
     
     // UITextFields set style
