@@ -38,7 +38,7 @@
                                 <rect key="frame" x="38" y="330.5" width="300" height="45"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fc-uH-qgY">
                                 <rect key="frame" x="38" y="383.5" width="300" height="40"/>
@@ -51,7 +51,7 @@
                                     <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="E1E-vI-zNA" kind="presentation" id="Kok-Y0-Wdw"/>
+                                    <action selector="signinPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WLp-jJ-2I9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avk-xV-d7m">
@@ -99,6 +99,7 @@
                     <connections>
                         <outlet property="email" destination="JRL-c2-FF6" id="cza-HF-XSD"/>
                         <outlet property="password" destination="JIZ-Qz-cjq" id="Vq6-8A-Ntx"/>
+                        <segue destination="E1E-vI-zNA" kind="presentation" identifier="signIntoTabbarVC" id="OqA-mS-Fj2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

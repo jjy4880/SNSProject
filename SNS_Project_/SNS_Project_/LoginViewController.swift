@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -29,6 +30,36 @@ class LoginViewController: UIViewController {
             tf.attributedPlaceholder = NSAttributedString(
                 string: tf.placeholder ?? "",
                 attributes: [NSAttributedStringKey.foregroundColor: UIColor(white:0.8, alpha: 0.4)])
+        }
+    }
+    
+    @IBAction func signinPressed(_ sender: Any) {
+        guard let emailAddress = email.text,
+            let passwordValue = password.text else {
+                print("로그인 에러")
+                return
+        }
+        
+        password.resignFirstResponder()
+        
+        Auth.auth().signIn(withEmail: emailAddress, password: passwordValue) { (user, err) in
+            if err != nil {
+                let alertController = UIAlertController(title: "로그인 실패", message: err.debugDescription, preferredStyle: .alert)
+                
+                let okButton = UIAlertAction(title: "확인", style: .default, handler: { (action) in
+                    self.email.resignFirstResponder()
+                })
+                
+                alertController.addAction(okButton)
+                self.present(alertController, animated: true, completion: {
+                    self.email.text = ""
+                    self.password.text = ""
+                })
+                return
+            }
+            self.email.text = ""
+            self.password.text = ""
+            self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
         }
     }
 }
