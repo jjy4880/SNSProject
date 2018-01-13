@@ -98,6 +98,16 @@ class AuthService {
         }
     }
     
+    static func pushArticleDataToDatabase(uid: String, imageUrl: String, description: String, handler: @escaping () -> Void) {
+        let ref = Database.database().reference().child("articles")
+        ref.setValue(["uid": uid,
+                      "imageUrl": imageUrl,
+                      "description": description])
+        
+        handler()
+        
+        print("Upload to Firebase Database / \(uid)")
+    }
     
     static func pushUserDataToDatabase(userName: String,
                                        email: String,
