@@ -14,11 +14,9 @@ class AuthService {
                 let values = son.value as! NSDictionary
                 let email = values["email"] as! String
                 self.userList.append(email)
-                
             }
         }
     }
-    
     
     //회원 가입 + 프로필 이미지 Storage저장 User데이타 DB 저장
     static func createUser(name: String,
