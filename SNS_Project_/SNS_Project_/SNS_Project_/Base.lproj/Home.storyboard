@@ -193,6 +193,7 @@
                                         <connections>
                                             <outlet property="articleImageView" destination="JgD-DS-G8s" id="3vc-eb-hvX"/>
                                             <outlet property="dateLabel" destination="mSb-Ud-QV5" id="gna-MM-QtU"/>
+                                            <outlet property="descTextView" destination="e2R-Cf-4MC" id="zDg-dU-Ilr"/>
                                             <outlet property="followButton" destination="bZc-f7-Wwl" id="5cd-3C-7Es"/>
                                             <outlet property="likeButton" destination="LdZ-BE-ycl" id="pJu-Bw-t4g"/>
                                             <outlet property="likeCountsButton" destination="YD2-fr-4Sn" id="qGS-EW-AJu"/>
@@ -224,6 +225,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="UgP-05-vVc" id="gZy-AZ-V6r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50a-vY-2Rp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

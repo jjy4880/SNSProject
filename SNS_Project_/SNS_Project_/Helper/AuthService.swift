@@ -7,6 +7,7 @@ class AuthService {
     
     static var userList: [String] = []
     
+    
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -15,26 +16,28 @@ class AuthService {
     }()
     
     static func fetchAllArticlesDatabase() {
+
         Database.database().reference().child("articles").observe(.value) { (datasnapshot) in
-            for child in datasnapshot.children.allObjects as! [DataSnapshot] {
-                let data = (child.value as! NSDictionary)
-                
-                print(data.allKeys)
-                dump(data.allValues)
-//                let values = child.value as! NSDictionary
-//                print(values["name"]!)
-            }
-                
-                    
-//                    ArticleStore.createArticleModel(username: values["name"] as! String, profileImageUrl: values["imageUrl"] as! String, description: values["description"] as! String, uid: values["uid"] as! String, currentDate: values["createDate"] as! String)
-//                dump(son.children)
-//
-                
-//                let arrayValue = son.children as! [NSDictionary]
-                
-                
+            ArticleStore.allArticles.removeAll()
             
+            for child in datasnapshot.children {
+                let son = child as! DataSnapshot
+                let values = son.value as AnyObject
+                print(values["name"])
+                articlesInit(object: values)
+            }
         }
+    }
+    
+    static func articlesInit(object: AnyObject) {
+        
+        ArticleStore.createArticleModel(username: object["name"] as! String,
+                                        profileImageUrl: object["profileUrl"] as! String,
+                                        description: object["description"] as! String,
+                                        uid: object["uid"] as! String,
+                                        currentDate: object["createDate"] as! String,
+                                        articleImageUrl: object["imageUrl"] as! String
+                                        )
     }
     
     static func fetchDatabase() {
@@ -131,15 +134,23 @@ class AuthService {
 
     
     static func pushArticleDataToDatabase(uid: String, imageUrl: String, description: String, handler: @escaping () -> Void) {
+        
+        var currentUserProfileImageUrl = ""
+        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (datasnapshot) in
+            let dic = (datasnapshot.value as! NSDictionary)
+            currentUserProfileImageUrl = dic["profileImageUrl"] as! String
+        })
+        
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (datasnapshot) in
             let value = datasnapshot.value as! NSDictionary
-            let ref = Database.database().reference().child("articles").child(uid).childByAutoId()
+            let ref = Database.database().reference().child("articles").childByAutoId()
             ref.setValue(["uid": uid,
                           "name" : (value["username"] as? String)!,
                           "imageUrl": imageUrl,
                           "description": description,
                           "createDate": dateFormatter.string(from: Date()),
-                          "autoID": ref.key
+                          "autoID": ref.key,
+                          "profileUrl": currentUserProfileImageUrl
                 ])
         }
         handler()

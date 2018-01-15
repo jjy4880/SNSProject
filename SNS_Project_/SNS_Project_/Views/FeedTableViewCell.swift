@@ -19,5 +19,6 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountsButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descTextView: UITextView!
     
 }

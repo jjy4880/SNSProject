@@ -2,11 +2,20 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 class HomeViewController: UIViewController {
-
+    
+    var currentUserProfileImageUrl: String = ""
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        AuthService.fetchAllArticlesDatabase()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
     // logout
     @IBAction func logOut(_ sender: Any) {
         logoutAlert()
@@ -34,11 +43,33 @@ class HomeViewController: UIViewController {
 }
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return ArticleStore.allArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedTableViewCell
+        let object = ArticleStore.allArticles[ArticleStore.allArticles.count - 1 - indexPath.row]
+        cell.dateLabel.text = object.currentDate
+        cell.usernameLabel.text = object.username
+        cell.usernameButton.setTitle(object.username, for: .normal)
+        cell.descTextView.text = object.description
+        
+       
+            do {
+                let profileImageurl = URL(string: object.profileImageUrl)
+                let profileImageData = try Data(contentsOf: profileImageurl!)
+                
+                let articleImageurl = URL(string: object.articleImageUrl)
+                let articleImageData = try Data(contentsOf: articleImageurl!)
+                DispatchQueue.main.async {
+                    cell.articleImageView.image = UIImage(data: articleImageData)
+                    cell.profileImageView.image = UIImage(data: profileImageData)
+                }
+            } catch let error{
+                print(error)
+                print(error.localizedDescription)
+            }
+  
         return cell
     }
     

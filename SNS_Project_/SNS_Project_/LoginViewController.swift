@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
         
         
         AuthService.fetchDatabase()
+        AuthService.fetchAllArticlesDatabase()
         
         self.view.addSubview(button)
         
@@ -54,10 +55,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //자동로그인
-        if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
-        }
+//        //자동로그인
+//        if Auth.auth().currentUser != nil {
+//            self.performSegue(withIdentifier: "signIntoTabbarVC", sender: nil)
+//        }
     }
     
     func textFieldStyleSetting(sender: [UITextField]) {
