@@ -63,11 +63,10 @@ class PhotoViewController: UIViewController {
             let desc = descriptionTextView.text,
             let image = imageView.image else { return }
         
-        
         self.descriptionTextView.resignFirstResponder()
-        guard let saveImage = UIImageJPEGRepresentation(image, 0.1)  else { return }
+        guard let saveImage = UIImageJPEGRepresentation(image, 0.5)  else { return }
         
-        Storage.storage().reference().child("articlePhotos").child(userid).putData(saveImage, metadata: nil) { (data, err) in
+        Storage.storage().reference().child("articlePhotos").child("\(userid) \(desc)").putData(saveImage, metadata: nil) { (data, err) in
             
             let imageUrl = data?.downloadURL()?.absoluteString ?? "Has not Found"
             AuthService.pushArticleDataToDatabase(uid: userid, imageUrl: imageUrl, description: desc) {
