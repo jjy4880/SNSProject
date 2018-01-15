@@ -1,6 +1,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SDWebImage
+
 class HomeViewController: UIViewController {
     
     var currentUserProfileImageUrl: String = ""
@@ -14,6 +16,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        print(ArticleStore.allArticles.count)
     }
 
     // logout
@@ -54,22 +57,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.usernameButton.setTitle(object.username, for: .normal)
         cell.descTextView.text = object.description
         
-       
-            do {
-                let profileImageurl = URL(string: object.profileImageUrl)
-                let profileImageData = try Data(contentsOf: profileImageurl!)
-                
-                let articleImageurl = URL(string: object.articleImageUrl)
-                let articleImageData = try Data(contentsOf: articleImageurl!)
-                DispatchQueue.main.async {
-                    cell.articleImageView.image = UIImage(data: articleImageData)
-                    cell.profileImageView.image = UIImage(data: profileImageData)
-                }
-            } catch let error{
-                print(error)
-                print(error.localizedDescription)
-            }
-  
+        let profileImageurl = URL(string: object.profileImageUrl)
+        let articleImageurl = URL(string: object.articleImageUrl)
+        
+        cell.articleImageView.sd_setImage(with: articleImageurl, completed: nil)
+        cell.profileImageView.sd_setImage(with: profileImageurl, completed: nil)
         return cell
     }
     

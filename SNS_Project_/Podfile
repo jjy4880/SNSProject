@@ -15,4 +15,6 @@ target 'SNS_Project_' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
+
+  pod 'SDWebImage/WebP'
 end
