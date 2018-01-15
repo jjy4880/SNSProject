@@ -9,11 +9,13 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFill
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(presentImagePicker))
         imageView.addGestureRecognizer(tapgesture)
     }
@@ -61,13 +63,26 @@ class PhotoViewController: UIViewController {
             let desc = descriptionTextView.text,
             let image = imageView.image else { return }
         
+        
+        self.descriptionTextView.resignFirstResponder()
         guard let saveImage = UIImageJPEGRepresentation(image, 0.1)  else { return }
         
         Storage.storage().reference().child("articlePhotos").child(userid).putData(saveImage, metadata: nil) { (data, err) in
+            
             let imageUrl = data?.downloadURL()?.absoluteString ?? "Has not Found"
             AuthService.pushArticleDataToDatabase(uid: userid, imageUrl: imageUrl, description: desc) {
-                self.imageView.image = nil
-                self.descriptionTextView.text = "게시글 작성"
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "알림", message: "게시글이 정상적으로 등록되었습니다.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "확인", style: .default) { action in
+                        
+                    }
+                    
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: {
+                        self.imageView.image = nil
+                        self.descriptionTextView.text = "게시글 작성"
+                    })
+                }
             }
         }
     }

@@ -15,7 +15,6 @@
         <!--게시물 작성-->
         <scene sceneID="nv4-yP-MFE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cbE-4J-qv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PhotoViewController" id="2Z3-w8-hCj" customClass="PhotoViewController" customModule="SNS_Project_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="voA-zS-Idb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -72,13 +71,13 @@
                         <outlet property="imageView" destination="RBz-4J-fts" id="wO3-B6-mhP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbE-4J-qv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1317.5999999999999" y="-41.829085457271368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="88M-WB-yVa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xQw-Iz-iCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavigationPhoto" automaticallyAdjustsScrollViewInsets="NO" id="6w7-sh-cG8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="photo" id="scl-d3-vTb">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
@@ -93,6 +92,7 @@
                         <segue destination="2Z3-w8-hCj" kind="relationship" relationship="rootViewController" id="zkd-5N-1aH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xQw-Iz-iCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1319" y="-833"/>
         </scene>

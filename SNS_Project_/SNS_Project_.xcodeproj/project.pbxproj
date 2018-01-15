@@ -16,6 +16,8 @@
 		CE2F0A4E20073CF9001B56BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F0A4D20073CF9001B56BC /* Extensions.swift */; };
 		CE2F0A5320077780001B56BC /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F0A5220077780001B56BC /* SignupViewModel.swift */; };
 		CE2F0A562007E7E6001B56BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F0A552007E7E5001B56BC /* GoogleService-Info.plist */; };
+		CE45236C200B19370046F505 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45236B200B19370046F505 /* ArticleModel.swift */; };
+		CE45236F200B227D0046F505 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45236E200B227D0046F505 /* FeedTableViewCell.swift */; };
 		CE456351200682EB005B097A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456350200682EB005B097A /* AppDelegate.swift */; };
 		CE456356200682EB005B097A /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE456354200682EB005B097A /* Start.storyboard */; };
 		CE456358200682EB005B097A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE456357200682EB005B097A /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		CE2F0A4D20073CF9001B56BC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CE2F0A5220077780001B56BC /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		CE2F0A552007E7E5001B56BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE45236B200B19370046F505 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
+		CE45236E200B227D0046F505 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		CE45634D200682EB005B097A /* SNS_Project_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNS_Project_.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE456350200682EB005B097A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE456355200682EB005B097A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -130,6 +134,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CE45236D200B22640046F505 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE45236E200B227D0046F505 /* FeedTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CE456344200682EB005B097A = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +163,7 @@
 		CE45634F200682EB005B097A /* SNS_Project_ */ = {
 			isa = PBXGroup;
 			children = (
+				CE45236D200B22640046F505 /* Views */,
 				CE45754C2009150400C89512 /* Helper */,
 				CE2F0A542007786F001B56BC /* Extensions */,
 				CE2F0A5120077758001B56BC /* ViewModel */,
@@ -167,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				CE45754D2009153400C89512 /* AuthService.swift */,
+				CE45236B200B19370046F505 /* ArticleModel.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -310,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE45236C200B19370046F505 /* ArticleModel.swift in Sources */,
 				CE4563632006833D005B097A /* LoginViewController.swift in Sources */,
 				CEE44B9C200690EA00465A6C /* SearchViewController.swift in Sources */,
 				CEE44BA22006910D00465A6C /* ActivityViewController.swift in Sources */,
@@ -318,6 +333,7 @@
 				CE456351200682EB005B097A /* AppDelegate.swift in Sources */,
 				CEE44B9E200690F500465A6C /* PhotoViewController.swift in Sources */,
 				CEE44BA02006910200465A6C /* ProfileViewController.swift in Sources */,
+				CE45236F200B227D0046F505 /* FeedTableViewCell.swift in Sources */,
 				CE45636720068F65005B097A /* MainTabbarViewController.swift in Sources */,
 				CE2F0A4E20073CF9001B56BC /* Extensions.swift in Sources */,
 				CE2F0A5320077780001B56BC /* SignupViewModel.swift in Sources */,

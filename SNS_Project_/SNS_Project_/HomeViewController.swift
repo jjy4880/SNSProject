@@ -1,10 +1,11 @@
 import UIKit
 import FirebaseAuth
-
+import FirebaseDatabase
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        AuthService.fetchAllArticlesDatabase()
     }
     // logout
     @IBAction func logOut(_ sender: Any) {
@@ -30,4 +31,16 @@ class HomeViewController: UIViewController {
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
+}
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedTableViewCell
+        return cell
+    }
+    
+    
 }

@@ -7,6 +7,36 @@ class AuthService {
     
     static var userList: [String] = []
     
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.setLocalizedDateFormatFromTemplate("MMMM d, YYYY")
+        return formatter
+    }()
+    
+    static func fetchAllArticlesDatabase() {
+        Database.database().reference().child("articles").observe(.value) { (datasnapshot) in
+            for child in datasnapshot.children.allObjects as! [DataSnapshot] {
+                let data = (child.value as! NSDictionary)
+                
+                print(data.allKeys)
+                dump(data.allValues)
+//                let values = child.value as! NSDictionary
+//                print(values["name"]!)
+            }
+                
+                    
+//                    ArticleStore.createArticleModel(username: values["name"] as! String, profileImageUrl: values["imageUrl"] as! String, description: values["description"] as! String, uid: values["uid"] as! String, currentDate: values["createDate"] as! String)
+//                dump(son.children)
+//
+                
+//                let arrayValue = son.children as! [NSDictionary]
+                
+                
+            
+        }
+    }
+    
     static func fetchDatabase() {
         Database.database().reference().child("users").observe(.value) { (snapshot) in
             for child in snapshot.children {
@@ -73,6 +103,7 @@ class AuthService {
                 return
             }
             print("Google Login Success")
+            dump(userList)
             if let name = user?.displayName,
                 let email = user?.email,
                 let profileImageUrl = user?.photoURL?.absoluteString,
@@ -97,14 +128,22 @@ class AuthService {
             }
         }
     }
+
     
     static func pushArticleDataToDatabase(uid: String, imageUrl: String, description: String, handler: @escaping () -> Void) {
-        let ref = Database.database().reference().child("articles")
-        ref.setValue(["uid": uid,
-                      "imageUrl": imageUrl,
-                      "description": description])
-        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (datasnapshot) in
+            let value = datasnapshot.value as! NSDictionary
+            let ref = Database.database().reference().child("articles").child(uid).childByAutoId()
+            ref.setValue(["uid": uid,
+                          "name" : (value["username"] as? String)!,
+                          "imageUrl": imageUrl,
+                          "description": description,
+                          "createDate": dateFormatter.string(from: Date()),
+                          "autoID": ref.key
+                ])
+        }
         handler()
+        
         
         print("Upload to Firebase Database / \(uid)")
     }
