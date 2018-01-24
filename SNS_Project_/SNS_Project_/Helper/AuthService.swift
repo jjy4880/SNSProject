@@ -4,10 +4,8 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class AuthService {
-    
+    static var currentUserid = ""
     static var userList: [String] = []
-    
-    
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -16,10 +14,8 @@ class AuthService {
     }()
     
     static func fetchAllArticlesDatabase() {
-
         Database.database().reference().child("articles").observe(.value) { (datasnapshot) in
             ArticleStore.allArticles.removeAll()
-            
             for child in datasnapshot.children {
                 let son = child as! DataSnapshot
                 let values = son.value as AnyObject
@@ -30,7 +26,6 @@ class AuthService {
     }
     
     static func articlesInit(object: AnyObject) {
-        
         ArticleStore.createArticleModel(username: object["name"] as! String,
                                         profileImageUrl: object["profileUrl"] as! String,
                                         description: object["description"] as! String,
@@ -38,6 +33,17 @@ class AuthService {
                                         currentDate: object["createDate"] as! String,
                                         articleImageUrl: object["imageUrl"] as! String
                                         )
+    }
+    static func fetchUserData(uid: String, success: @escaping (UserInfoModel) -> Void){
+        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (datasnapshot) in
+            let data = datasnapshot as DataSnapshot
+            let values = data.value as! NSDictionary
+            
+            success(UserInfoModel(email: values["email"] as! String,
+                                  profileImageUrl: values["profileImageUrl"] as! String,
+                                  nickname: values["username"] as! String))
+        }
     }
     
     static func fetchDatabase() {

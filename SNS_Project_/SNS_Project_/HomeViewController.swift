@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AuthService.currentUserid = Auth.auth().currentUser?.uid ?? ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +65,4 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.profileImageView.sd_setImage(with: profileImageurl, completed: nil)
         return cell
     }
-    
-    
 }
