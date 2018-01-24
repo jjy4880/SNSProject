@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate  ,UICollectionViewDelegateFlowLayout{
     
     lazy var profileSettingView: UIView = {
         let view = UIView()
@@ -70,6 +70,23 @@ class ProfileViewController: UIViewController {
         return btn
     }()
     
+    let cellid = "cellid"
+    
+    lazy var photoView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .white
+        cv.delegate = self
+        cv.dataSource = self
+        return cv
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(profileSettingView)
@@ -79,6 +96,8 @@ class ProfileViewController: UIViewController {
         self.profileSettingView.addSubview(following)
         self.profileSettingView.addSubview(emailLabel)
         self.profileSettingView.addSubview(modify)
+        self.view.addSubview(photoView)
+        self.photoView.addSubview(collectionView)
         
         
         profileSettingView.snp.makeConstraints { (make) in
@@ -122,6 +141,16 @@ class ProfileViewController: UIViewController {
             make.top.equalTo(following.snp.bottom).offset(8)
             make.trailing.equalTo(following)
         }
+        photoView.snp.makeConstraints { (make) in
+            make.top.equalTo(profileSettingView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(self.view)
+        }
+        
+        collectionView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalTo(photoView)
+        }
+        
+       
 
         AuthService.fetchUserData(uid: AuthService.currentUserid) { (data) in
             self.navigationItem.title = data.nickname
@@ -131,10 +160,61 @@ class ProfileViewController: UIViewController {
         profileImage.layer.cornerRadius = 45
         
         modify.addTarget(self, action: #selector(modifyInfo), for: .touchUpInside)
+        
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellid)
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+   
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as! PhotoCell
+        cell.image.backgroundColor = .green
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width / 3.0, height: self.view.frame.width / 3.0)
+    }
+    
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     
     @objc func modifyInfo() {
         let viewController = UIViewController()
         self.present(viewController, animated: true, completion: nil)
     }
 }
+
+
+class PhotoCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(image)
+        print("생성")
+        image.snp.makeConstraints { (make) in
+            make.leading.top.bottom.trailing.equalTo(self)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let image: UIImageView = {
+        let image = UIImageView()
+        image.layer.cornerRadius = 4
+        image.layer.masksToBounds = true
+        image.backgroundColor = .white
+        return image
+    }()
+}
+
