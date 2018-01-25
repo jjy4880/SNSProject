@@ -15,15 +15,12 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     lazy var profileSettingView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        
         return view
     }()
     
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .blue
-        image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = 45
         return image
     }()
     
@@ -57,7 +54,7 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     lazy var emailLabel: UILabel = {
         let lb = UILabel()
         lb.textAlignment = .center
-        lb.font = UIFont.systemFont(ofSize: 10)
+        lb.font = UIFont.systemFont(ofSize: 14)
         return lb
     }()
     
@@ -131,7 +128,6 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
         }
         emailLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(profileImage)
-            make.trailing.equalTo(profileImage).offset(32)
             make.top.equalTo(profileImage.snp.bottom).offset(16)
             make.height.equalTo(40)
         }
@@ -156,22 +152,34 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
             self.navigationItem.title = data.nickname
             self.profileImage.sd_setImage(with: URL(string: data.profileImageUrl), completed: nil)
             self.emailLabel.text = data.email
+            
         }
+        profileImage.contentMode = .scaleToFill
         profileImage.layer.cornerRadius = 45
+        profileImage.layer.masksToBounds = true
+        
         
         modify.addTarget(self, action: #selector(modifyInfo), for: .touchUpInside)
         
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellid)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return ArticleStore.currentUserArticle.count
     }
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as! PhotoCell
-        cell.image.backgroundColor = .green
+        
+        let data = ArticleStore.currentUserArticle[indexPath.row]
+        cell.image.sd_setImage(with: URL(string:data.articleImageUrl), completed: nil)
+        
         return cell
     }
     
@@ -185,6 +193,11 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = ArticleStore.currentUserArticle[indexPath.row]
+        print(data.description)
     }
     
     

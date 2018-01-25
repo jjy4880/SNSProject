@@ -5,6 +5,7 @@ import FirebaseStorage
 
 class AuthService {
     static var currentUserid = ""
+    
     static var userList: [String] = []
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -13,26 +14,37 @@ class AuthService {
         return formatter
     }()
     
-    static func fetchAllArticlesDatabase() {
+    static func fetchAllArticlesDatabase(uid: String?) {
         Database.database().reference().child("articles").observe(.value) { (datasnapshot) in
-            ArticleStore.allArticles.removeAll()
-            for child in datasnapshot.children {
-                let son = child as! DataSnapshot
-                let values = son.value as AnyObject
-                print(values["name"])
-                articlesInit(object: values)
+            if uid == nil {
+                ArticleStore.allArticles.removeAll()
+                print("모든DB 가져오기")
+                for child in datasnapshot.children {
+                    let son = child as! DataSnapshot
+                    let values = son.value as AnyObject
+                    articlesInit(object: values, mode: 1)
+                }
+            } else if let userid = uid {
+                ArticleStore.currentUserArticle.removeAll()
+                for child in datasnapshot.children {
+                    let son = child as! DataSnapshot
+                    let values = son.value as AnyObject
+                    if values["uid"] as! String == userid {
+                        articlesInit(object: values, mode: 2)
+                    }
+                }
             }
         }
     }
     
-    static func articlesInit(object: AnyObject) {
+    static func articlesInit(object: AnyObject, mode: Int) {
         ArticleStore.createArticleModel(username: object["name"] as! String,
                                         profileImageUrl: object["profileUrl"] as! String,
                                         description: object["description"] as! String,
                                         uid: object["uid"] as! String,
                                         currentDate: object["createDate"] as! String,
-                                        articleImageUrl: object["imageUrl"] as! String
-                                        )
+                                        articleImageUrl: object["imageUrl"] as! String, mode: mode
+        )
     }
     static func fetchUserData(uid: String, success: @escaping (UserInfoModel) -> Void){
         
@@ -97,11 +109,11 @@ class AuthService {
                            password: password) { (user, error) in
                             
                             dump(userList)
-            if error != nil {
-                onError()
-                return
-            }
-            onSuccess()
+                            if error != nil {
+                                onError()
+                                return
+                            }
+                            onSuccess()
         }
     }
     
@@ -137,7 +149,7 @@ class AuthService {
             }
         }
     }
-
+    
     
     static func pushArticleDataToDatabase(uid: String, imageUrl: String, description: String, handler: @escaping () -> Void) {
         

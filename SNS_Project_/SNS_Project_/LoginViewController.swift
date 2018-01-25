@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate,GIDSignInDelega
         
         
         AuthService.fetchDatabase()
-        AuthService.fetchAllArticlesDatabase()
+        AuthService.fetchAllArticlesDatabase(uid: nil)
         
         self.view.addSubview(button)
         

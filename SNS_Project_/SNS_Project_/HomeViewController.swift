@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AuthService.currentUserid = Auth.auth().currentUser?.uid ?? ""
+        
+        AuthService.fetchAllArticlesDatabase(uid: AuthService.currentUserid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,8 +63,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let profileImageurl = URL(string: object.profileImageUrl)
         let articleImageurl = URL(string: object.articleImageUrl)
         
+        cell.articleImageView.sd_setShowActivityIndicatorView(true)
+        cell.articleImageView.sd_setIndicatorStyle(.gray)
+        
         cell.articleImageView.sd_setImage(with: articleImageurl, completed: nil)
         cell.profileImageView.sd_setImage(with: profileImageurl, completed: nil)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row) 번째 행 출력")
     }
 }
