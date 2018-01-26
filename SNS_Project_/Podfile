@@ -17,5 +17,4 @@ target 'SNS_Project_' do
   pod 'GoogleSignIn'
 
   pod 'SDWebImage/WebP'
-  pod 'ImagePicker'
 end

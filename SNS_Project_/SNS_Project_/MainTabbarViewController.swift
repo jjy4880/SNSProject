@@ -9,21 +9,13 @@
 import UIKit
 import FirebaseAuth
 
-class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
+class MainTabbarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.delegate = self
-        self.tabBarController?.delegate = self as UITabBarControllerDelegate
+       
         // Do any additional setup after loading the view.
     }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(selectedIndex)
-    }
-    
-    
-    
     
     // UITabbar Height 조정
     override func viewDidLayoutSubviews() {

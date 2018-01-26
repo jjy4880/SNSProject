@@ -4,7 +4,6 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 
-
 class PhotoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
