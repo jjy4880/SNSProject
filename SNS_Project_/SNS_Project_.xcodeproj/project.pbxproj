@@ -27,6 +27,8 @@
 		CE456365200688DE005B097A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456364200688DE005B097A /* SignUpViewController.swift */; };
 		CE45636720068F65005B097A /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45636620068F65005B097A /* MainTabbarViewController.swift */; };
 		CE45754E2009153400C89512 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45754D2009153400C89512 /* AuthService.swift */; };
+		CE6C038B201B07260054E15A /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C038A201B07260054E15A /* UploadViewController.swift */; };
+		CE6C038D201B14DB0054E15A /* PhotoViewNavicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C038C201B14DB0054E15A /* PhotoViewNavicationController.swift */; };
 		CEE44B9A200690DD00465A6C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B99200690DD00465A6C /* HomeViewController.swift */; };
 		CEE44B9C200690EA00465A6C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B9B200690EA00465A6C /* SearchViewController.swift */; };
 		CEE44B9E200690F500465A6C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE44B9D200690F500465A6C /* PhotoViewController.swift */; };
@@ -59,6 +61,8 @@
 		CE456364200688DE005B097A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CE45636620068F65005B097A /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		CE45754D2009153400C89512 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CE6C038A201B07260054E15A /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		CE6C038C201B14DB0054E15A /* PhotoViewNavicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewNavicationController.swift; sourceTree = "<group>"; };
 		CEE44B99200690DD00465A6C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEE44B9B200690EA00465A6C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CEE44B9D200690F500465A6C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				CEE44B9D200690F500465A6C /* PhotoViewController.swift */,
 				CE456364200688DE005B097A /* SignUpViewController.swift */,
 				CE45636620068F65005B097A /* MainTabbarViewController.swift */,
+				CE6C038A201B07260054E15A /* UploadViewController.swift */,
+				CE6C038C201B14DB0054E15A /* PhotoViewNavicationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -330,12 +336,14 @@
 				CE45236C200B19370046F505 /* ArticleModel.swift in Sources */,
 				CE4563632006833D005B097A /* LoginViewController.swift in Sources */,
 				CEE44B9C200690EA00465A6C /* SearchViewController.swift in Sources */,
+				CE6C038D201B14DB0054E15A /* PhotoViewNavicationController.swift in Sources */,
 				CEE44BA22006910D00465A6C /* ActivityViewController.swift in Sources */,
 				CE45754E2009153400C89512 /* AuthService.swift in Sources */,
 				CE456365200688DE005B097A /* SignUpViewController.swift in Sources */,
 				CE456351200682EB005B097A /* AppDelegate.swift in Sources */,
 				CEE44B9E200690F500465A6C /* PhotoViewController.swift in Sources */,
 				CEE44BA02006910200465A6C /* ProfileViewController.swift in Sources */,
+				CE6C038B201B07260054E15A /* UploadViewController.swift in Sources */,
 				CE2F47512018D8E5004A632F /* UserInfoModel.swift in Sources */,
 				CE45236F200B227D0046F505 /* FeedTableViewCell.swift in Sources */,
 				CE45636720068F65005B097A /* MainTabbarViewController.swift in Sources */,
@@ -514,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P94N3QDFF3;
 				INFOPLIST_FILE = SNS_Project_/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.YongByung.iOSdev.SNS-Project-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,6 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P94N3QDFF3;
 				INFOPLIST_FILE = SNS_Project_/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.YongByung.iOSdev.SNS-Project-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
